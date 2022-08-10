@@ -1,0 +1,110 @@
+drop table professor, student, topic, professor_topic;
+CREATE TABLE professor(
+    prof_id int PRIMARY KEY, /*Also called constraint*/
+    prof_name varchar(50) NOT NULL
+);
+
+CREATE TABLE student (
+    stud_id int PRIMARY KEY,
+    stud_name varchar(50) NOT NULL,
+    prof_id int NOT NULL REFERENCES professor
+);
+
+
+INSERT INTO professor (prof_id, prof_name) VALUES (1, 'Nemo');
+INSERT INTO professor (prof_id, prof_name) VALUES (2, 'Aladdin');
+
+SELECT * FROM professor;
+
+
+UPDATE professor 
+    SET prof_name = 'Gizmo'
+    WHERE prof_name = 'Nemo';
+
+/*
+DELETE FROM professor
+WHERE prof_id = 2;
+
+*/
+INSERT INTO student (stud_id, stud_name, prof_id) VALUES (3, 'Frippe', 1);
+
+
+SELECT * FROM student;
+
+CREATE TABLE topic(
+    topic_id serial PRIMARY KEY, /*serial = auto increment*/
+    topic_descri varchar(50) NOT NULL
+);
+
+INSERT INTO topic (topic_descri) VALUES ('JAVA');
+INSERT INTO topic (topic_descri) VALUES ('SQL');
+
+SELECT * FROM topic;
+
+CREATE TABLE professor_topic(
+    prof_id int REFERENCES professor,
+    topic_id int REFERENCES topic,
+    PRIMARY KEY(prof_id, topic_id)
+);
+
+
+INSERT INTO professor_topic (prof_id, topic_id)
+VALUES (1,1);
+INSERT INTO professor_topic (prof_id, topic_id)
+VALUES (1,2);
+
+INSERT INTO professor_topic (prof_id, topic_id)
+VALUES (2,1);
+
+SELECT * FROM professor_topic;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*DROP TABLE SUPERHERO, SUPERPOWER, ASSISTANT;
+
+CREATE TABLE SUPERHERO (
+    SUPERHERO_ID int PRIMARY KEY,
+    SUPERHERO_NAME varchar(255),
+    SUPERHERO_ALIAS varchar(255),
+    SUPERHERO_ORIGIN varchar(255)
+);
+
+CREATE TABLE SUPERPOWER (
+    SUPERPOWER_ID int PRIMARY KEY,
+    SUPERPOWER_NAME varchar(255),
+    SUPERPOWER_DESCRIPTION varchar(255)
+);
+
+CREATE TABLE ASSISTANT (
+    ASSISTANT_ID int PRIMARY KEY,
+    SUPERHERO_ID int REFERENCES SUPERHERO(SUPERHERO_ID),
+    ASSISTANT_NAME varchar(255)
+);
+
+
+INSERT INTO SUPERHERO VALUES (1, 'Batman', 'Clark', 'JADU');
+INSERT INTO SUPERPOWER VALUES (1, 'NAMN', 'SAUHDOFHWFSDU DSUIF SDOF');
+INSERT INTO ASSISTANT VALUES (1, 1, 'NAMN');
+
+SELECT * FROM SUPERHERO;
+SELECT * FROM SUPERPOWER;
+SELECT * FROM ASSISTANT;
+*/
+/*
+ ALTER TABLE SUPERHERO
+  ALTER COLUMN SUPERHERO_ID TYPE INT,
+  ALTER COLUMN SUPERHERO_NAME TYPE VARCHAR (255),
+  ALTER COLUMN SUPERHERO_ALIAS TYPE VARCHAR (255),
+  ALTER COLUMN SUPERHERO_ORIGIN TYPE VARCHAR (255),
+  */
+  
