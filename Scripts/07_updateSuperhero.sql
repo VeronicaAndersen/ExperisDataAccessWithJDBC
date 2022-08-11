@@ -1,4 +1,4 @@
 UPDATE SUPERHERO 
-    SET SUPERHERO_NAME = "Black Widow"
-    WHERE SUPERHERO_ID = 2;
+    SET SUPERHERO_NAME = 'Black Widow'
+    WHERE SUPERHERO_NAME = 'Etta Candy';
     
